@@ -48,4 +48,7 @@
     <string name="volume_keys_control_media_stream_summary">Volume panel will show media volume slider by default</string>
 
     <string name="status_bar_quick_qs_pulldown">Pulldown statusbar from right side to show QS panel</string>
+
+    <string name="keyguard_torch_title">Lock screen torch</string>
+    <string name="keyguard_torch_summary">Long press power button with screen off turns on torch</string>
 </resources>
