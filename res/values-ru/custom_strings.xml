@@ -66,7 +66,7 @@
 
     <!-- Status bar quick qs pulldown -->
     <string name="status_bar_quick_qs_pulldown_title">Быстрый доступ</string>
-    <string name="status_bar_quick_qs_pulldown_summary">R%1$s строки состояния открывает быстрые настройки</string>
+    <string name="status_bar_quick_qs_pulldown_summary">%1$s строки состояния открывает быстрые настройки</string>
 
     <!-- Clock settings -->
     <string name="clock_settings_title">Настройки часов</string>
@@ -74,7 +74,7 @@
     <!-- clock date options -->
     <string name="clock_title_enable">Выравнивание</string>
     <string name="status_bar_show_clock_title">Показывать время и дату</string>
-    <string name="status_bar_clock_seconds_title">Show seconds</string>
+    <string name="status_bar_clock_seconds_title">Показывать секунды</string>
     <string name="status_bar_am_pm_title">Стиль индикатора «AM/PM»</string>
     <string name="status_bar_am_pm_info">Включен 24-часовой формат времени</string>
     <string name="right_clock">Часы справа</string>
