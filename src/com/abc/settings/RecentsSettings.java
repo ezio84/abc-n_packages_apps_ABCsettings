@@ -17,18 +17,49 @@ package com.abc.settings;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.UserHandle;
+import android.provider.Settings;
+import android.support.v14.preference.SwitchPreference;
+import android.support.v7.preference.Preference;
 
 import com.android.internal.logging.nano.MetricsProto;
 import com.android.settings.R;
 import com.android.settings.SettingsPreferenceFragment;
 import com.abc.support.preferences.IconPackPreference;
 
-public class RecentsSettings extends SettingsPreferenceFragment {
+public class RecentsSettings extends SettingsPreferenceFragment implements
+        Preference.OnPreferenceChangeListener {
+
+    private SwitchPreference mSlimToggle;
+    private RecentsIconPackPreference mStockIconPacks;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.abc_recents_settings);
+
+        mStockIconPacks = (RecentsIconPackPreference) findPreference("recents_icon_pack");
+        mSlimToggle = (SwitchPreference) findPreference("use_slim_recents");
+        boolean enabled = Settings.System.getIntForUser(
+                getActivity().getContentResolver(), Settings.System.USE_SLIM_RECENTS, 0,
+                UserHandle.USER_CURRENT) == 1;
+        mSlimToggle.setChecked(enabled);
+        mStockIconPacks.setEnabled(!enabled);
+        mSlimToggle.setOnPreferenceChangeListener(this);
+    }
+
+    @Override
+    public boolean onPreferenceChange(Preference preference, Object newValue) {
+        if (preference == mSlimToggle) {
+            boolean value = (Boolean) newValue;
+            Settings.System.putIntForUser(getActivity().getContentResolver(),
+                    Settings.System.USE_SLIM_RECENTS, value ? 1 : 0,
+                    UserHandle.USER_CURRENT);
+            mSlimToggle.setChecked(value);
+            mStockIconPacks.setEnabled(!value);
+            return true;
+        }
+        return false;
     }
 
     @Override
